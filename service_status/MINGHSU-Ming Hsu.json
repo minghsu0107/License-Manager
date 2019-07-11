@@ -1,8 +1,8 @@
 {
-  "function1": true,
-  "function2": true,
-  "function3": false,
-  "function4": true
+  "Blender": true,
+  "Blender adv": true,
+  "Freedy": false,
+  "Freedy Pro": true
 }
 {
 	"time_span": 30
