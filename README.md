@@ -1,5 +1,7 @@
 # License Manager (windows)
 
+This license manager implements an authorization mechanism for a projector controller application so that an unser can only access the application when connected with a specific projector and using a specific pc.
+
 ## Process ##
 
 1. get computer information
