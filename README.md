@@ -13,23 +13,21 @@ This license manager implements an authorization mechanism for a projector contr
    save the encrypted data **email_info\\[host_name]-[user_name].txt**
 4. generate license
     - decrypt the information in email_info
-    - add function status and license duration to the decrypted package from 
+    - add service status and license duration to the decrypted package from 
       **service_status\\[host_name]-[user_name].json**
     - encrypt the entire data as a license; create folder **my_license** and save the 
       license under **my_license\\license.txt**
 5. authenticate the license
     - decrypt the license and parse the following information
         - hardware info (for validating pc)
-        - projector serial number
         - registration time (for checking expiration)
-        - service status
-            - activated function
-                -  for activating corresponding services
-            - license duration
-                - for checking expiration
+        - service status (for activating corresponding services)     
+        - license duration (for checking expiration)
+        - projector serial number
 6. output the result in **output\\out.json**. The file contains:
     - service status
     - registration time
+    - license duration
     - projector serial number
 - note that this license_manager is designed to generate a single license from multiple requests(if any).
 
