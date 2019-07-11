@@ -29,11 +29,16 @@
 
 ## usage ##
 
+```shell=
+git clone https://github.com/minghsu0107/license_manager.git
+```
+
 When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\src\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_name]-[user_name].json**.
 
 Run the following command:
 
 ```shell=
+cd license_manager\src
 g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp
 ```
 Debug mode:
