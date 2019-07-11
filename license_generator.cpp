@@ -119,7 +119,7 @@ int Generator::generate(string source_dir, string func_dir) {
     }
 #ifdef DEBUG
     ofstream out("result.json");
-    out << j.dump();
+    out << j.dump(4);
     out.close();
 #endif
     string res = my_encryption(j);
