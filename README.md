@@ -39,7 +39,7 @@ git clone https://github.com/minghsu0107/license_manager.git
 
 When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_name]-[user_name].json**.
 
-One can modify the json file mentioned above to insert, update, or delete function status.
+One can modify the json file mentioned above to change the service status and the license duration.
 
 Run the following command:
 
