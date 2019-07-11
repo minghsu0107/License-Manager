@@ -12,7 +12,7 @@ class Validation {
 public:
 	Validation(string key);
 	string get_key();
-	int validate(string prjector_file);
+	int validate();
 private:
 	string _key;
 	string my_decryption(string str);
@@ -20,6 +20,6 @@ private:
 	bool isExpired(string name, json info);
 	bool match(string name, json info, json fingerprint);
 	void dump_json(string name, json info, string file);
-	int judge(json info, string prjector_file);
+	int judge(json info);
 };
 #endif
