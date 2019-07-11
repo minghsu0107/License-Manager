@@ -36,7 +36,7 @@ void display(string output_file) {
 
 int main() {
 	var v = {"1234567890abcdef", "projector\\id.txt", "01.00", \
-		     "output\\out.txt", "email_info", "service_status"};
+		     "output\\out.json", "email_info", "service_status"};
 
 	Extract e(v.key);
 	int emes = e.load(v.projector_file);
@@ -49,7 +49,7 @@ int main() {
 		int gmes = g.generate(v.email_dir, v.service_dir);
 		if (!gmes) {
 			Validation vv(v.key);
-			int vmes = vv.validate(v.projector_file);
+			int vmes = vv.validate();
 
 			if (!vmes) {
 				cout << "validation succeed, welcome!" << endl;
