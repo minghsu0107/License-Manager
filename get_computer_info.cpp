@@ -144,11 +144,7 @@ int Extract::load(string projector_file) {
     j = add_registration_time(j);
     j = add_os_info(j);
     string encryp = my_encryption(j);
-#ifdef DEBUG
-    ofstream o("get_info.json");
-    o << j.dump(4);
-    o.close();
-#endif
+
     _mkdir(".\\email_info"); 
     string name = get_computer_name() + "-" + get_user_name();
     ofstream out("email_info\\" + name + ".txt");
