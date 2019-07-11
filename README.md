@@ -20,9 +20,9 @@ This license manager implements an authorization mechanism for a projector contr
 5. authenticate the license
     - decrypt the license and parse the following information
         - hardware info (for validating pc)
-        - registration time (for checking expiration)
-        - service status (for activating corresponding services)     
+        - registration time (for checking expiration)     
         - license duration (for checking expiration)
+        - service status (for activating corresponding services)
         - projector serial number
 6. output the result in **output\\out.json**. The file contains:
     - service status
