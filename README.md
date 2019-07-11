@@ -51,5 +51,4 @@ Debug mode:
 ```shell=
 g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp 
 ```
-The above command will generate **get_info.json** and **result.json**, which are unencrypted results of running get_computer_info.cpp
-and license_generator.cpp respectively.
+The above command will generate **result.json**, which is the unencrypted result of running license_generator.cpp.
