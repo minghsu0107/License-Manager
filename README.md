@@ -1,6 +1,6 @@
 # License Manager (windows)
 
-This license manager implements an authorization mechanism for a projector controller application so that an unser can only access the application when connected with a specific projector and using a specific pc.
+This license manager implements an authorization mechanism for a projector controller application so that an unser can access the application only when using a specific pc. The user must enter an authenticated license every time when accessing the application. 
 
 ## Process ##
 
@@ -20,13 +20,17 @@ This license manager implements an authorization mechanism for a projector contr
 5. authenticate the license
     - decrypt the license and parse the following information
         - hardware info (for validating pc)
-        - projector serial number (for validating projector)
+        - projector serial number
         - registration time (for checking expiration)
         - service status
             - activated function
                 -  for activating corresponding services
             - license duration
                 - for checking expiration
+6. output the result in **output\\out.json**. The file contains:
+    - service status
+    - registration time
+    - projector serial number
 - note that this license_manager is designed to generate a single license from multiple requests(if any).
 
 ## usage ##
