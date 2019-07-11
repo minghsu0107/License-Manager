@@ -6,6 +6,7 @@
 #include <ctime>
 #include <regex>
 #include <direct.h>
+#include <winsock2.h>
 #include <windows.h>
 #include "get_computer_info.h"
 #include "xxtea.h"
@@ -109,6 +110,28 @@ string Extract::get_computer_name() {
     return (string)name;
 }
 
+json Extract::add_os_info(json j) {
+    OSVERSIONINFO ver = { sizeof(OSVERSIONINFO) };
+    GetVersionEx(&ver);
+    string os_name;
+    if (ver.dwMajorVersion == 5 && ver.dwMinorVersion == 0)
+        os_name = "Windows_2000";
+    else if (ver.dwMajorVersion == 5 && ver.dwMinorVersion == 1)
+        os_name = "Windows_XP";
+    else if (ver.dwMajorVersion == 6 && ver.dwMinorVersion == 0)
+        os_name = "Windows_2003";
+    else if (ver.dwMajorVersion == 5 && ver.dwMinorVersion == 2)
+        os_name = "windows_vista";
+    else if (ver.dwMajorVersion == 6 && ver.dwMinorVersion == 1)
+        os_name = "windows_7";
+    else if (ver.dwMajorVersion == 6 && ver.dwMinorVersion == 2)
+        os_name = "windows_10";
+    
+    os_name += "_" + to_string(ver.dwMajorVersion) + "." + to_string(ver.dwMinorVersion);
+    j["os_name"] = os_name;
+    return j;
+}
+
 int Extract::load(string projector_file) {
     json j;
     try {
@@ -119,6 +142,7 @@ int Extract::load(string projector_file) {
             return error_code;
     }
     j = add_registration_time(j);
+    j = add_os_info(j);
     string encryp = my_encryption(j);
 #ifdef DEBUG
     ofstream o("get_info.json");
