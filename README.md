@@ -6,7 +6,7 @@
     - hard disk serial number
     - mac address
     - system time (set as registration time)
-2. get projector serial number
+2. get projector serial number from **projector\\id.txt**
 3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and 
    save the encrypted data **email_info\\[host_name]-[user_name].txt**
 4. generate license
