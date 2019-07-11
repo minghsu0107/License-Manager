@@ -40,10 +40,6 @@ bool Validation::match(string name, json info, json fingerprint) {
 	j1 = info[name]["hard_disk"], j2 = fingerprint["hard_disk"];
 	for (int i = 0; i < j1.size(); ++i)
 		if (j1[i] != j2[i]) return false;
-
-	j1 = info[name]["projector"], j2 = fingerprint["projector"];
-	
-	if (j1 != j2) return false;
 	return true;
 }
 
@@ -52,8 +48,9 @@ void Validation::dump_json(string name, json info, string file) {
 	j["service_status"] = info[name]["service_status"];
 	j["registration_time"] = info[name]["time"];
 	j["time_span"] = info[name]["expiration"]["time_span"];
+	j["projector"] = info[name]["projector"];
 	ofstream out(file);
-	out << j;
+	out << j.dump(4);
 	out.close();
 }
 
@@ -80,12 +77,11 @@ string Validation::my_decryption(string str) {
 	return en.xxtea_decrypt(str.substr(0, str.length() - 13), get_key());
 }
 
-int Validation::judge(json info, string prjector_file) {
+int Validation::judge(json info) {
 	Extract e;
 	json fingerprint;
 	try {
 	    fingerprint = e.get_hardware_info();
-	    fingerprint = e.get_projector_id(fingerprint, prjector_file);
 	}
 	catch (int error_code){
 		return error_code;
@@ -95,7 +91,7 @@ int Validation::judge(json info, string prjector_file) {
 	if (match(name, info, fingerprint)) {
 		if (!isExpired(name, info)) {
 			_mkdir(".\\output"); 
-			dump_json(name, info, "output\\out.txt");
+			dump_json(name, info, "output\\out.json");
 			return 0;
 		}
 		else return 1002;
@@ -103,7 +99,7 @@ int Validation::judge(json info, string prjector_file) {
 	return 1003;
 }
 
-int Validation::validate(string prjector_file) {
+int Validation::validate() {
 	ifstream in("my_license\\license.txt");
 	string encryp;
 	getline(in, encryp);
@@ -112,5 +108,5 @@ int Validation::validate(string prjector_file) {
 	if (!IsRightFormat(decryp)) return 1001;
 
 	auto info = parser(decryp);
-    return judge(info, prjector_file);
+    return judge(info);
 }
