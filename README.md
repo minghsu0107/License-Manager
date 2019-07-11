@@ -29,7 +29,7 @@
 
 ## usage ##
 
-When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\src\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_ame]-[user_ame].json**.
+When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\src\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_name]-[user_name].json**.
 
 Run the following command:
 
