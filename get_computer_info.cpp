@@ -146,7 +146,7 @@ int Extract::load(string projector_file) {
     string encryp = my_encryption(j);
 #ifdef DEBUG
     ofstream o("get_info.json");
-    o << j;
+    o << j.dump(4);
     o.close();
 #endif
     _mkdir(".\\email_info"); 
