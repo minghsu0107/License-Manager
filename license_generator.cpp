@@ -19,10 +19,9 @@ string Generator::get_key() { return _key; }
 string Generator::get_version() { return _version; }
 
 pair<json, json> Generator::get_variables(string func_file) {
-	ifstream in(func_file);
+    ifstream in(func_file);
     json tmp_j1, tmp_j2;
-    in >> tmp_j1;
-    in >> tmp_j2;
+    in >> tmp_j1 >> tmp_j2;
     in.close();
     return make_pair(tmp_j1, tmp_j2);
 }
