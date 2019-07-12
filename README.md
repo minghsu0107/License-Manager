@@ -31,7 +31,7 @@ This license manager implements an authorization mechanism for a projector contr
     - projector serial number
 - note that this license_manager is designed to generate a single license from multiple requests(if any).
 
-## usage ##
+## Usage ##
 
 ```shell=
 git clone https://github.com/minghsu0107/license_manager.git
