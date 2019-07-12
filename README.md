@@ -1,6 +1,6 @@
 # License Manager (windows)
 
-This license manager implements an authorization mechanism for a projector controller application so that an unser can access the application only when using a specific pc. The user must enter an authenticated license every time when accessing the application. 
+This license manager implements an authorization mechanism for a projector controller application so that an user can only access the application when using a specific pc. The user must enter a valid license every time in order to access the application. 
 
 ## Process ##
 
