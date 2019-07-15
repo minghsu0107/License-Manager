@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -21,7 +20,8 @@ string Generator::get_version() { return _version; }
 pair<json, json> Generator::get_variables(string func_file) {
     ifstream in(func_file);
     json tmp_j1, tmp_j2;
-    in >> tmp_j1 >> tmp_j2;
+    in >> tmp_j1;
+    in >> tmp_j2;
     in.close();
     return make_pair(tmp_j1, tmp_j2);
 }
@@ -101,7 +101,7 @@ int Generator::generate(string source_dir, string func_dir) {
     string encryp, decryp;
     json j;
     for (auto &file: v) {
-    	in.open(source_dir + "\\" + file);
+        in.open(source_dir + "\\" + file);
         if (!in) return 1011;
 
         getline(in, encryp);
@@ -116,6 +116,9 @@ int Generator::generate(string source_dir, string func_dir) {
         }
         in.close();
     }
+
+    j["universal"] = false;
+
 #ifdef DEBUG
     ofstream out("result.json");
     out << j.dump(4);

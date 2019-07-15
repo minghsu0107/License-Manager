@@ -1,8 +1,8 @@
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 #include <tuple>
 #include <ctime>
 #include <assert.h>
@@ -77,6 +77,8 @@ string Validation::my_decryption(string str) {
 }
 
 int Validation::judge(json info) {
+	if (info["universal"]) return 10;
+
 	Extract e;
 	json fingerprint;
 	try {
@@ -104,6 +106,7 @@ int Validation::validate() {
 	getline(in, encryp);
 
 	string decryp = my_decryption(encryp);
+	
 	if (!IsRightFormat(decryp)) return 1001;
 
 	auto info = parser(decryp);

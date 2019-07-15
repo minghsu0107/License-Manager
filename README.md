@@ -9,12 +9,10 @@ This license manager implements an authorization mechanism for a projector contr
     - mac addresses
     - system time (set as registration time)
 2. get the projector serial number from **projector\\id.txt**
-3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and 
-   save the encrypted data in **email_info\\[host_name]-[user_name].txt**
+3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and save the encrypted data in **email_info\\[host_name]-[user_name].txt**
 4. generate license
     - decrypt the data in email_info
-    - get service status and license duration from **service_status\\[host_name]-[user_name].json**  and 
-    add them to the decrypted data
+    - get service status and license duration from **service_status\\[host_name]-[user_name].json** and add them to the decrypted data
     - encrypt the entire data as a license; create folder **my_license** and save the 
       license under **my_license\\license.txt**
 5. authenticate the license
@@ -29,7 +27,8 @@ This license manager implements an authorization mechanism for a projector contr
     - registration time
     - license duration
     - projector serial number
-- note that this license_manager is designed to generate a single license from multiple requests(if any).
+
+Note that this license_manager is designed to generate a single license from multiple requests(if any).
 
 ## Usage ##
 
@@ -45,10 +44,19 @@ Run the following command:
 
 ```shell=
 cd license_manager
-g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp
+g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp
 ```
 Debug mode:
 ```shell=
-g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp 
+g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp
 ```
-The above command will generate **result.json**, which is the unencrypted result of running license_generator.cpp.
+For testing the universal key:
+```shell=
+a.exe -u
+```
+For general conditions:
+```shell=
+a.exe -t
+```
+
+**result.json** will be generated in debug mode, which is the unencrypted result of running generate_universal.cpp or license_generator.cpp.
