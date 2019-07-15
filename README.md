@@ -10,11 +10,11 @@ This license manager implements an authorization mechanism for a projector contr
     - system time (set as registration time)
 2. get the projector serial number from **projector\\id.txt**
 3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and 
-   save the encrypted data **email_info\\[host_name]-[user_name].txt**
+   save the encrypted data in **email_info\\[host_name]-[user_name].txt**
 4. generate license
     - decrypt the information in email_info
-    - add service status and license duration to the decrypted package from 
-      **service_status\\[host_name]-[user_name].json**
+    - get service status and license duration from **service_status\\[host_name]-[user_name].json**  and 
+    add them to the decrypted package
     - encrypt the entire data as a license; create folder **my_license** and save the 
       license under **my_license\\license.txt**
 5. authenticate the license
