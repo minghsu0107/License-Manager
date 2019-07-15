@@ -124,5 +124,5 @@ int Generator::generate(string source_dir, string func_dir) {
     string res = my_encryption(j);
     set_version(res);
     write_file(res);
-	return 0;
+    return 0;
 }
