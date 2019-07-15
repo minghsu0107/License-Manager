@@ -107,5 +107,5 @@ int Validation::validate() {
 	if (!IsRightFormat(decryp)) return 1001;
 
 	auto info = parser(decryp);
-    return judge(info);
+	return judge(info);
 }
