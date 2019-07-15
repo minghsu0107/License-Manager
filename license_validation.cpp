@@ -21,7 +21,7 @@ string Validation::get_key() { return _key; }
 
 bool Validation::isExpired(string name, json info) {
 	time_t now = time(0);
-    localtime(&now);
+	localtime(&now);
 	auto t = info[name]["time"];
 	auto span_day = info[name]["expiration"]["time_span"];
 
@@ -85,7 +85,7 @@ int Validation::judge(json info) {
 	catch (int error_code){
 		return error_code;
 	}
-    string name = e.get_computer_name() + "-" + e.get_user_name();
+	string name = e.get_computer_name() + "-" + e.get_user_name();
     
 	if (match(name, info, fingerprint)) {
 		if (!isExpired(name, info)) {
