@@ -76,8 +76,21 @@ string Validation::my_decryption(string str) {
 	return en.xxtea_decrypt(str.substr(0, str.length() - 13), get_key());
 }
 
+void Validation::write_universal(string file) {
+	json tmp, j;
+	tmp["Blender"] = tmp["Blender adv"] = tmp["Freedy"] = tmp["Freedy Pro"] = true;
+	j["service_status"] = tmp;
+	ofstream out(file);
+	out << j.dump(4);
+	out.close();
+}
+
 int Validation::judge(json info) {
-	if (info["universal"]) return 10;
+	if (info["universal"]) {
+		_mkdir(".\\output");
+		write_universal("output\\out.json");
+		return 10;
+	}
 
 	Extract e;
 	json fingerprint;

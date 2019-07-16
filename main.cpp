@@ -73,11 +73,10 @@ void validate_test() {
 	if (!vmes || vmes == 10) {
 		cout << "validation succeed, welcome!" << endl;
 		if (vmes == 10)
-			cout << "using universal key..." << endl;
-		else {
-			cout << "activate following functions..." << endl;
-			display(v.output_file);
-		}
+			cout << "using universal key" << endl;
+		
+		cout << "activate following functions..." << endl;
+		display(v.output_file);
 	}
 	else if (vmes == 101)
 		cout << "fail to access pc information." <<endl;

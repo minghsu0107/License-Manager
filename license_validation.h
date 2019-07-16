@@ -20,6 +20,7 @@ private:
 	bool isExpired(string name, json info);
 	bool match(string name, json info, json fingerprint);
 	void dump_json(string name, json info, string file);
+	void write_universal(string file);
 	int judge(json info);
 };
 #endif
