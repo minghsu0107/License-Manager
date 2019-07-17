@@ -33,9 +33,9 @@ void Universal::generate_universal_key() {
 	json j;
 	j["universal"] = true;
 #ifdef DEBUG
-    ofstream out("result.json");
-    out << j.dump(4);
-    out.close();
+	ofstream out("result.json");
+	out << j.dump(4);
+	out.close();
 #endif
 	string res = my_encryption(j);
 	set_version(res);
