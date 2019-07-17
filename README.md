@@ -8,6 +8,7 @@ This license manager implements an authorization mechanism for a projector contr
     - hard disk serial numbers
     - mac addresses
     - system time (set as registration time)
+    - operating system
 2. get the projector serial number from **projector\\id.txt**
 3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and save the encrypted data in **email_info\\[host_name]-[user_name].txt**
 4. generate license
