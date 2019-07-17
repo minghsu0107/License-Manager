@@ -21,7 +21,7 @@ struct var {
 };
 
 static var v = {"1234567890abcdef", "projector\\id.txt", "01.00", \
-			     "output\\out.json", "email_info", "service_status"};
+		"output\\out.json", "email_info", "service_status"};
 
 
 void display(string output_file) {
