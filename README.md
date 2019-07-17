@@ -7,13 +7,13 @@ This license manager implements an authorization mechanism for a projector contr
 1. get computer information
     - hard disk serial numbers
     - mac addresses
-    - system time (set as registration time)
-    - operating system
+    - operating system version
 2. get the projector serial number from **projector\\id.txt**
 3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and save the encrypted data in **email_info\\[host_name]-[user_name].txt**
 4. generate license
     - decrypt the data in email_info
     - get service status and license duration from **service_status\\[host_name]-[user_name].json** and add them to the decrypted data
+    - add system time (set as registration time)
     - encrypt the entire data as a license; create folder **my_license** and save the 
       license under **my_license\\license.txt**
 5. authenticate the license
@@ -33,6 +33,10 @@ Note that this license_manager is designed to generate a single license from mul
 
 ## Usage ##
 
+```shell=
+git clone https://git.coretronic.com/HPBU/license-manager.git
+```
+
 When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_name]-[user_name].json**.
 
 One can modify the json file mentioned above to change the service status and the license duration.
@@ -41,19 +45,19 @@ Run the following command:
 
 ```shell=
 cd license_manager
-g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp
+g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp -o license-manager
 ```
 Debug mode:
 ```shell=
-g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp
+g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp -o license-manager
 ```
 For testing the universal key:
 ```shell=
-a.exe -u
+license-manager.exe -u
 ```
 For general conditions:
 ```shell=
-a.exe -t
+license-manager.exe -t
 ```
 
 **result.json** will be created in debug mode, which is the unencrypted result of running generate_universal.cpp or license_generator.cpp.

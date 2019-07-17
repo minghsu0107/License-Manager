@@ -16,6 +16,7 @@ private:
 	pair<json, json> get_variables(string func_file);
 	string my_encryption(json j);
 	string my_decryption(string str);
+	void add_registration_time(json &j);
 	void update(json &j, string decryp, string func_dir, string file);
 	void set_version(string &res);
 };

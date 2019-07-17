@@ -20,7 +20,7 @@ string Validation::get_key() { return _key; }
 bool Validation::isExpired(string name, json info) {
 	time_t now = time(0);
 	localtime(&now);
-	auto t = info[name]["time"];
+	auto t = info[name]["registration_time"];
 	auto span_day = info[name]["expiration"]["time_span"];
 
 	ll span_sec = 86400 * (ll)span_day;
@@ -43,7 +43,7 @@ bool Validation::match(string name, json info, json fingerprint) {
 void Validation::dump_json(string name, json info, string file) {
 	json j;
 	j["service_status"] = info[name]["service_status"];
-	j["registration_time"] = info[name]["time"];
+	j["registration_time"] = info[name]["registration_time"];
 	j["time_span"] = info[name]["expiration"]["time_span"];
 	j["projector"] = info[name]["projector"];
 	ofstream out(file);

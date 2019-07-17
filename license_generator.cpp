@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include <assert.h>
 #include <direct.h>
 #include <dirent.h>
@@ -24,6 +25,12 @@ pair<json, json> Generator::get_variables(string func_file) {
     in >> tmp_j2;
     in.close();
     return make_pair(tmp_j1, tmp_j2);
+}
+
+void Generator::add_registration_time(json &j) {
+    time_t now = time(0);
+    localtime(&now);
+    j["registration_time"] = now;
 }
 
 static vector<string> get_all_user_file(string dir_path) {
@@ -65,6 +72,7 @@ void Generator::update(json &j, string decryp, string func_dir, string file) {
     json tmp = json::parse(decryp);
     tmp["service_status"] = p.first;
     tmp["expiration"] = p.second;
+    add_registration_time(tmp);
     j[user] = tmp;
 }
 

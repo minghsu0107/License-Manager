@@ -3,7 +3,6 @@
 #include <string.h>
 #include <vector>
 #include <fstream>
-#include <ctime>
 #include <regex>
 #include <direct.h>
 #include <winsock2.h>
@@ -84,13 +83,6 @@ json Extract::get_projector_id(json j, string projector_file) {
     return j;
 }
 
-json Extract::add_registration_time(json j) {
-    time_t now = time(0);
-    localtime(&now);
-    j["time"] = now;
-    return j;
-}
-
 string Extract::my_encryption(json j) {
     XXTEA en;
     return en.xxtea_encrypt(j.dump(), get_key());
@@ -141,7 +133,6 @@ int Extract::load(string projector_file) {
     catch (int error_code) {
             return error_code;
     }
-    j = add_registration_time(j);
     j = add_os_info(j);
     string encryp = my_encryption(j);
     
