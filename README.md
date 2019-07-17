@@ -56,4 +56,4 @@ For general conditions:
 a.exe -t
 ```
 
-**result.json** will be generated in debug mode, which is the unencrypted result of running generate_universal.cpp or license_generator.cpp.
+**result.json** will be created in debug mode, which is the unencrypted result of running generate_universal.cpp or license_generator.cpp.
