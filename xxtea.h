@@ -16,8 +16,6 @@ public:
 private:
 	string base64_encode(unsigned char const* , unsigned int len);
 	string base64_decode(std::string const& s);
-	string string_To_UTF8(const string & str);
-	string UTF8_To_string(const string & str); 
 
 	unsigned char *xxtea_encrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length); 
 	unsigned char *xxtea_decrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length); 
