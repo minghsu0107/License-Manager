@@ -1,0 +1,10 @@
+{
+	"service_status":
+	{
+		"function1": true,
+		"function2": false,
+		"function3": false,
+		"function4": true,
+		"function5": true
+	}
+}

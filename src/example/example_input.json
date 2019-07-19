@@ -1,0 +1,10 @@
+{
+	"key": "1234567890abcdef",
+	"version": "01.00",
+	"output_dir_pc": "output_pc",
+	"output_dir_projector": "output_projector",
+	"serial_number_file": "src/projector_licensing/projector_serial.txt",
+	"service_dir_pc": "src/generator/status/pc_status",
+	"service_dir_projector": "src/generator/status/projector_status",
+	"license_dir": "my_license"
+}

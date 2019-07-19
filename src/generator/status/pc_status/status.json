@@ -1,0 +1,13 @@
+{
+	"service_status":
+	{
+		"Blender": true,
+		"Blender adv": true,
+		"Freedy": false,
+		"Freedy Pro": true
+	},
+	"expiration":
+	{
+		"time_span": 30
+	}
+}
