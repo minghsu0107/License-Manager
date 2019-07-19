@@ -3,11 +3,10 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
-#ifdef PC
+#ifdef WIN
 #include "../pc_licensing/get_pc_info.h"
 #include "../pc_licensing/license_validation_pc.h"
-#endif
-#ifdef PRO
+#else
 #include "../projector_licensing/get_projector_info.h"
 #include "../projector_licensing/license_validation_projector.h"
 #endif
@@ -99,7 +98,7 @@ bool generate_test(var v, bool isPC) {
 	return false;
 }
 
-#ifdef PC
+#ifdef WIN
 bool extract_test_pc(var v) {
 	Extract e(v.key);
 	int emes = e.load(v.output_dir_pc);
@@ -144,8 +143,7 @@ void test_pc(var v) {
 		}
 	}
 }
-#endif
-#ifdef PRO
+#else
 bool extract_test_projector(var v) {
 	ProExtract e(v.key);
 	int emes = e.load(v.serial_number_file, v.output_dir_projector);
@@ -195,13 +193,12 @@ int main(int argc, const char *argv[]) {
 	var v = set_dir_path("src/example/example_input.json");
 	
 	const char *arg = argv[1];
-#ifdef PC
+#ifdef WIN
 	if (arg[0] == 'a')
 		universal_test_pc(v);
 	if (arg[0] == 'b')
 		test_pc(v);
-#endif
-#ifdef PRO
+#else
 	if (arg[0] == 'c')
 		universal_test_projector(v);
 	if (arg[0] == 'd')

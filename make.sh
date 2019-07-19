@@ -21,7 +21,7 @@ compile_and_run() {
 			if [ ! -s license-manager-pc-debug  ]
 			then
 				set_status_file_name
-				g++ -std=gnu++11 -D DEBUG -D PC \
+				g++ -std=gnu++11 -D DEBUG -D WIN \
 				         src/example/example.cpp \
 				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
@@ -37,7 +37,7 @@ compile_and_run() {
 			if [ ! -s license-manager-projector-debug ]
 			then
 				set_status_file_name
-				g++ -std=gnu++11 -D DEBUG -D PRO\
+				g++ -std=gnu++11 -D DEBUG \
 				         src/example/example.cpp \
 				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
@@ -56,7 +56,7 @@ compile_and_run() {
 			if [ ! -s license-manager-pc ]
 			then
 				set_status_file_name
-				g++ -std=gnu++11 -D PC\
+				g++ -std=gnu++11 -D WIN \
 				         src/example/example.cpp \
 				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
@@ -72,7 +72,7 @@ compile_and_run() {
 			if [ ! -s license-manager-projector ]
 			then
 				set_status_file_name
-				g++ -std=gnu++11 -D PRO\
+				g++ -std=gnu++11 \
 				         src/example/example.cpp \
 				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
