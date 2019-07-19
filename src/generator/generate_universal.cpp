@@ -1,5 +1,8 @@
 #include <string>
 #include <fstream>
+#ifdef PC
+#include <direct.h>
+#endif
 #include <sys/stat.h>
 #include "generate_universal.h"
 #include "../encryption/xxtea.h"
@@ -20,13 +23,23 @@ string Universal::my_encryption(json j) {
 }
 
 static void write_file(string res, string license_dir, bool isPC) {
+#ifdef PC
+	mkdir(license_dir.c_str());
+#endif
+#ifdef PRO
     mkdir(license_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+#endif
     string dir;
     if (isPC) 
         dir = license_dir + "/pc_license";
     else
         dir = license_dir + "/projector_license"; 
-    mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
+#ifdef PC
+    mkdir(dir.c_str());
+#endif
+#ifdef PRO
+    mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+#endif 
     ofstream out(dir + "/license.txt");
     out << res;
     out.close();
