@@ -3,7 +3,6 @@
 #include <vector>
 #include <ctime>
 #include <assert.h>
-#include <direct.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #include "license_generator.h"
@@ -101,13 +100,13 @@ static bool IsRightFormat(string strData) {
 }
 
 static void write_file(string res, string license_dir, bool isPC) {
-    mkdir(license_dir.c_str());
+    mkdir(license_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     string dir;
     if (isPC) 
         dir = license_dir + "/pc_license";
     else
         dir = license_dir + "/projector_license"; 
-    mkdir(dir.c_str()); 
+    mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
     ofstream out(dir + "/license.txt");
     out << res;
     out.close();

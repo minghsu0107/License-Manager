@@ -2,7 +2,7 @@
 #include <cstdio>
 #include <vector>
 #include <fstream>
-#include <direct.h>
+#include <sys/stat.h>
 #include "get_projector_info.h"
 #include "../encryption/xxtea.h"
 #include "../json_convert/json.hpp"
@@ -78,9 +78,9 @@ int ProExtract::load(string serial_number_file, string output_dir_projector) {
     string encryp = my_encryption(j);
     //cout <<j;
     
-    mkdir(output_dir_projector.c_str());
+    mkdir(output_dir_projector.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     string dir = output_dir_projector + "/email_info_projector";
-    mkdir(dir.c_str()); 
+    mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
 
 
     string name = getSerialNumber(serial_number_file);

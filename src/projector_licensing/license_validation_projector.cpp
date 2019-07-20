@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <assert.h>
-#include <direct.h>
+#include <sys/stat.h>
 #include "license_validation_projector.h"
 #include "get_projector_info.h"
 #include "../encryption/xxtea.h"
@@ -72,9 +72,9 @@ void ProValidation::write_universal(string file) {
 int ProValidation::judge(json info, string output_dir,
 	                     string serial_number_file) {
 	if (info["universal"]) {
-		mkdir(output_dir.c_str());
+		mkdir(output_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		string dir = output_dir + "/final_result";
-		mkdir(dir.c_str()); 
+		mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
 		write_universal(dir + "/result.json");
 		return 11;
 	}
@@ -90,9 +90,9 @@ int ProValidation::judge(json info, string output_dir,
 	string name = e.getSerialNumber(serial_number_file);
 	
 	if (match(name, info, fingerprint)) {
-		mkdir(output_dir.c_str());
+		mkdir(output_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		string dir = output_dir + "/final_result";
-		mkdir(dir.c_str()); 
+		mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
 		dump_json(name, info, dir + "/result.json");
 		return 0;
 	}

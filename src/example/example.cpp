@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
-#include <direct.h>
 #ifdef PC
 #include "../pc_licensing/get_pc_info.h"
 #include "../pc_licensing/license_validation_pc.h"
