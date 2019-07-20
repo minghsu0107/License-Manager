@@ -36,14 +36,14 @@ vector<string> ProExtract::getMacInfo() {
     ifstream in("/proc/net/arp");
     getline(in, line);
     while (getline(in, line)) {
-            sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
+           sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
 	           ip_address,
 	           &hw_type,
 	           &flags,
 	           mac_address,
 	           mask,
 	           device);
-	    mac.push_back(string(mac_address));
+	   mac.push_back(string(mac_address));
     }
     in.close();
     return mac;
