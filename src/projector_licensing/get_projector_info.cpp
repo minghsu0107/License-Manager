@@ -43,7 +43,7 @@ vector<string> ProExtract::getMacInfo() {
 	           mac_address,
 	           mask,
 	           device);
-	   mac.push_back(string(mac_address));
+	    mac.push_back(string(mac_address));
     }
     in.close();
     return mac;
