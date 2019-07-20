@@ -24,7 +24,7 @@ string Universal::my_encryption(json j) {
 
 static void write_file(string res, string license_dir, bool isPC) {
 #ifdef WIN
-	mkdir(license_dir.c_str());
+    mkdir(license_dir.c_str());
 #else
     mkdir(license_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 #endif
