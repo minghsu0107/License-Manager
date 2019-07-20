@@ -8,7 +8,7 @@ show_error_message() {
 	echo "    -p          for projector (on linux)"
 	echo "Mode"
 	echo "    -u          using universal key"
-	echo "    -t          for general test"
+	echo "    -t          for general cases"
 	echo "Options"
 	echo "    -d          debug mode"
 }
