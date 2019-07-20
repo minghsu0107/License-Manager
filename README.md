@@ -1,33 +1,23 @@
 # License Manager (windows)
 
-This license manager implements an authorization mechanism for a projector controller application so that an user can only access the application when using a specific pc. The user must enter a valid license every time in order to access the application. 
+This license manager implements an authorization mechanism for a projector and its controller application so that an user can only access the application with a specific pc. In order to access the projector and the application, an user must enter a valid license for each device.
 
 ## Process ##
 
-1. get computer information
-    - hard disk serial numbers
-    - mac addresses
-    - operating system version
-2. get the projector serial number from **projector\\id.txt**
-3. encrypt the above information and make a request to cloud(by email); create folder **email_info** and save the encrypted data in **email_info\\[host_name]-[user_name].txt**
-4. generate license
-    - decrypt the data in email_info
-    - get service status and license duration from **service_status\\[host_name]-[user_name].json** and add them to the decrypted data
-    - add system time (set as registration time)
-    - encrypt the entire data as a license; create folder **my_license** and save the 
-      license under **my_license\\license.txt**
-5. authenticate the license
-    - decrypt the license and parse the following information
-        - hardware info (for validating pc)
-        - registration time (for checking expiration)     
-        - license duration (for checking expiration)
-        - service status (for activating corresponding services)
+1. Gather hardware information of the client's device
+    - for projector
         - projector serial number
-6. output the result in **output\\out.json**. The file contains:
-    - service status
-    - registration time
-    - license duration
-    - projector serial number
+        - mac address
+    - for pc
+        - hard disk serial number
+        - mac address
+2. Encrypt the hardware information and send a license request by email
+3. Decrypt the data, set service status and registration time, and encrypt the entire data as a license
+4. Email the license back to the client
+4. Validate the license
+    - check if the hardware information matches
+    - check expiration
+    - Activate corresponding functions according to the service status mentioned in the license
 
 Note that this license_manager is designed to generate a single license from multiple requests(if any).
 
@@ -37,27 +27,12 @@ Note that this license_manager is designed to generate a single license from mul
 git clone https://github.com/minghsu0107/license_manager.git
 ```
 
-When using main.cpp for testing, one should enter *hostname* and *whoami* in cmd to attain computer name and user name respectively. Then go to **license_manager\\service_status** and rename MINGHSU-Ming Hsu.json as **[host_name]-[user_name].json**.
-
-One can modify the json file mentioned above to change the service status and the license duration.
-
 Run the following command:
 
 ```shell=
 cd license_manager
-g++ -std=gnu++11 main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp -o license-manager
-```
-Debug mode:
-```shell=
-g++ -std=gnu++11 -DDEBUG main.cpp get_computer_info.cpp license_generator.cpp license_validation.cpp xxtea.cpp generate_universal.cpp -o license-manager
-```
-For testing the universal key:
-```shell=
-license-manager.exe -u
-```
-For general conditions:
-```shell=
-license-manager.exe -t
+chmod 700 make.sh clean.sh
+./make.sh 
 ```
 
-**result.json** will be created in debug mode, which is the unencrypted result of running generate_universal.cpp or license_generator.cpp.
+**debug_pc.json** or **debug_projector.json** will be created in debug mode, which is the unencrypted content of the generated license.
