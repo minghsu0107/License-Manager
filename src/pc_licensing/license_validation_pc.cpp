@@ -102,7 +102,7 @@ int Validation::judge(json info, string output_dir) {
 	}
 	string name = e.get_computer_name() + "-" + e.get_user_name();
 	transform(name.begin(), name.end(), name.begin(),
-    [](unsigned char c){ return std::tolower(c); });
+		  [](unsigned char c){ return std::tolower(c); });
     
 	if (match(name, info, fingerprint)) {
 		if (!isExpired(name, info)) {
