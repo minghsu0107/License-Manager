@@ -39,15 +39,15 @@ void Universal::set_version(string &res) {
 void Universal::generate_universal_key(string license_dir, bool isPC) {
 	json j;
 	j["universal"] = true;
-    j["tag"] = isPC? "pc": "projector";
+	j["tag"] = isPC? "pc": "projector";
 #ifdef DEBUG
-    ofstream out;
-    if (isPC)
-        out.open("debug_pc.json");
-    else
-        out.open("debug_projector.json");
-    out << j.dump(4);
-    out.close();
+	ofstream out;
+	if (isPC)
+		out.open("debug_pc.json");
+	else
+		out.open("debug_projector.json");
+	out << j.dump(4);
+	out.close();
 #endif
 	string res = my_encryption(j);
 	set_version(res);
