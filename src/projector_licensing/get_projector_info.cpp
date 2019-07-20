@@ -27,25 +27,25 @@ string ProExtract::getSerialNumber(string serial_number_file) {
 vector<string> ProExtract::getMacInfo() {
     vector<string> mac;
     string line;
-	char ip_address[500];
-	int hw_type, flags;
-	char mac_address[500];
-	char mask[500];
-	char device[500];
+    char ip_address[500];
+    int hw_type, flags;
+    char mac_address[500];
+    char mask[500];
+    char device[500];
 	
-	ifstream in("/proc/net/arp");
-	getline(in, line);
-	while (getline(in, line)) {
-	    sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
-	          ip_address,
-	          &hw_type,
-	          &flags,
-	          mac_address,
-	          mask,
-	          device);
+    ifstream in("/proc/net/arp");
+    getline(in, line);
+    while (getline(in, line)) {
+            sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
+	           ip_address,
+	           &hw_type,
+	           &flags,
+	           mac_address,
+	           mask,
+	           device);
 	    mac.push_back(string(mac_address));
-	}
-	in.close();
+    }
+    in.close();
     return mac;
 }
 
