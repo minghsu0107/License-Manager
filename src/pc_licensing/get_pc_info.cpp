@@ -128,7 +128,7 @@ int Extract::load(string output_dir_pc) {
 
     string name = get_computer_name() + "-" + get_user_name();
     transform(name.begin(), name.end(), name.begin(),
-    [](unsigned char c){ return std::tolower(c); });
+              [](unsigned char c){ return std::tolower(c); });
 
     ofstream out(dir + "/" + name + ".txt");
     out << encryp;
