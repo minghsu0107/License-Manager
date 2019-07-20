@@ -1,16 +1,8 @@
-#include <iostream> 
 #include <string>
-#include <string.h>
+#include <cstdio>
 #include <vector>
 #include <fstream>
 #include <direct.h>
-/*
-#include <sys/ioctl.h>
-#include <net/if.h> 
-#include <unistd.h>
-#include <netinet/in.h>
-#include <string.h>
-*/
 #include "get_projector_info.h"
 #include "../encryption/xxtea.h"
 #include "../json_convert/json.hpp"
@@ -34,34 +26,26 @@ string ProExtract::getSerialNumber(string serial_number_file) {
 
 vector<string> ProExtract::getMacInfo() {
     vector<string> mac;
-    /*
-    struct ifreq ifr;
-    struct ifconf ifc;
-    char buf[1024];
-    int success = 0;
-
-    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
-    if (sock == -1) return mac;
-
-    ifc.ifc_len = sizeof(buf);
-    ifc.ifc_buf = buf;
-    if (ioctl(sock, SIOCGIFCONF, &ifc) == -1) return mac;
-
-    struct ifreq* it = ifc.ifc_req;
-    const struct ifreq* const end = it + (ifc.ifc_len / sizeof(struct ifreq));
-
-    for (; it != end; ++it) {
-        strcpy(ifr.ifr_name, it->ifr_name);
-        if (ioctl(sock, SIOCGIFFLAGS, &ifr) == 0) {
-            if (! (ifr.ifr_flags & IFF_LOOPBACK)) {
-                if (ioctl(sock, SIOCGIFHWADDR, &ifr) == 0) {
-                    mac.push_back(string(ifr.ifr_hwaddr.sa_data));
-                }
-            }
-        }
-        else return mac;
-    }
-    */
+    string line;
+	char ip_address[500];
+	int hw_type, flags;
+	char mac_address[500];
+	char mask[500];
+	char device[500];
+	
+	ifstream in("/proc/net/arp");
+	getline(in, line);
+	while (getline(in, line)) {
+	    sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
+	          ip_address,
+	          &hw_type,
+	          &flags,
+	          mac_address,
+	          mask,
+	          device);
+	    mac.push_back(string(mac_address));
+	}
+	in.close();
     return mac;
 }
 
@@ -105,9 +89,3 @@ int ProExtract::load(string serial_number_file, string output_dir_projector) {
     out.close();
     return 0;
 }
-/*
-int main() {
-    ProExtract e("1234567890abcdef");
-    e.load("src/projector_licensing/projector_serial.txt", "output_projector");
-}
-*/
