@@ -36,6 +36,12 @@ For example, the command below tests the general cases for pc licensing in debug
 
 **debug_pc.json** or **debug_projector.json** will be created in debug mode, which is the unencrypted content of the generated license.
 
+To clean up outputs, run the following command:
+
+```shell=
+./clean.sh
+```
+
 ## Process ##
 
 1. Gather hardware information of the client's device
