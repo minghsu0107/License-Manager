@@ -36,7 +36,7 @@ struct var {
 	int trial_period;
 };
 
-var set_dir_path(string example_file) {
+var set_var(string example_file) {
 	ifstream t(example_file);
 	json j;
 	t >> j;
@@ -207,7 +207,7 @@ void test_trial(var v) {
 #endif
 
 int main(int argc, const char *argv[]) {
-	var v = set_dir_path("src/example/example_input.json");
+	var v = set_var("src/example/example_input.json");
 	const char *arg = argv[1];
 #ifdef TRIAL
 	test_trial(v);
