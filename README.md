@@ -1,6 +1,6 @@
 # License Manager
 
-This license manager implements an authorization mechanism for a projector and its controller application so that an user can only access the application with a specific pc. In order to access the projector and the application, an user must enter a valid license for each device. However, an user will be given a 30-day trial period (default) for testing the application.
+This license manager implements an authorization mechanism for a projector and its controller application. In order to activate the service, an user must enter a specific license for each device. In addition, an user is given a 30-day trial period for testing the application.
 
 ## Usage ##
 
@@ -55,16 +55,16 @@ To clean up outputs, run the following command:
 1. Gather hardware information of the client's device
     - for projector
         - projector serial number
-        - mac address
+        - MAC address
     - for pc
         - hard disk serial number
-        - mac address
+        - MAC address
 2. Encrypt the hardware information and send a license request by email
 3. Decrypt the data, set service status and registration time, and encrypt the entire data as a license
 4. Email the license back to the client
 5. Validate the license
     - check if the hardware information matches
     - check expiration
-    - Activate corresponding functions according to the service status mentioned in the license
+    - if the license is valid, activate corresponding functions according to the service status mentioned in the license
 
 Note that this license_manager is designed to generate a single license from multiple requests(if any).
