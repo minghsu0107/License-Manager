@@ -23,7 +23,7 @@ Test licensing system:
 	Host
 	    -c          for pc (on windows git bash)
 	    -p          for projector (on linux)
-        Mode
+	Mode
 	    -u          using universal key
 	    -g          for general cases
 	Options
