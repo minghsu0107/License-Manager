@@ -34,6 +34,7 @@ Test trial mechanism:
        Options
             -d          debug mode
 ```
+
 For example, the command below tests the general cases for pc licensing in debug mode.
 
 ```shell=
