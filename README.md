@@ -42,7 +42,7 @@ For example, the command below tests the general cases for pc licensing in debug
 ```
 When testing the licensing system in debug mode, **debug_pc.json** or **debug_projector.json** will be created, which is the unencrypted content of the generated license.
 
-When testing the trial mechanism in debug mode, **debug-trial.json** will be updated during each login (every two seconds). **debug-trial.json** contains the registration time and the valid time interval ([low, high]).
+When testing the trial mechanism in debug mode, **debug-trial.json** will be updated during each login (every 3 seconds) for 5 times. **debug-trial.json** contains the registration time and the valid time interval [low, high].
 
 To clean up outputs, run the following command:
 
