@@ -67,4 +67,4 @@ To clean up outputs, run the following command:
     - check expiration
     - if the license is valid, activate corresponding functions according to the service status mentioned in the license
 
-Note that this license_manager is designed to generate a single license from multiple requests(if any).
+Note that this license_manager is designed to generate a single license from multiple requests (if any).
