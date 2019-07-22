@@ -3,6 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <sys/stat.h>
+#include <regex>
+#include <stdlib.h>
 #include "get_projector_info.h"
 #include "../encryption/xxtea.h"
 #include "../json_convert/json.hpp"
@@ -25,27 +27,19 @@ string ProExtract::getSerialNumber(string serial_number_file) {
 }
 
 vector<string> ProExtract::getMacInfo() {
+    ifstream fp;
+    string str;
     vector<string> mac;
-    string line;
-    char ip_address[500];
-    int hw_type, flags;
-    char mac_address[500];
-    char mask[500];
-    char device[500];
-	
-    ifstream in("/proc/net/arp");
-    getline(in, line);
-    while (getline(in, line)) {
-           sscanf(line.c_str(), "%s 0x%x 0x%x %s %s %s\n",
-	           ip_address,
-	           &hw_type,
-	           &flags,
-	           mac_address,
-	           mask,
-	           device);
-	    mac.push_back(string(mac_address));
+    regex pattern("^([0-9A-Fa-f]{2}[:-]{1}){5}([0-9A-Fa-f]{2})$");
+
+    system("ifconfig -a > mc.txt");
+    fp.open("mc.txt"); 
+    while (fp >> str) {
+          if (regex_match(str, pattern))
+              mac.push_back(str);
     }
-    in.close();
+    fp.close();
+    remove("mc.txt");
     return mac;
 }
 
