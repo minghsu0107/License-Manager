@@ -92,6 +92,11 @@ void Trial::update(ll new_low) {
 		out << my_encryption(j);
 		out.close();
 	}
+#ifdef DEBUG
+	ofstream out("debug-trial.json");
+	out << j.dump(4);
+	out.close();
+#endif	
 }
 
 int Trial::isExpired(ll now) {
@@ -103,15 +108,10 @@ int Trial::isExpired(ll now) {
 
 	tmp = my_decryption(tmp);
 	json j = json::parse(tmp);
-#ifdef DEBUG
-	ofstream out("debug-trial.json");
-	out << j.dump(4);
-	out.close();
-#endif	
+
 	if (j["low"] <= now && now <= j["high"])
 		return 0;
 	return 1111;
-
 }
 
 int Trial::check() {

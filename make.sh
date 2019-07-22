@@ -45,15 +45,15 @@ compile_and_run() {
 				         src/trial/set_trial.cpp \
 				         -o trial-test-debug
 			fi
-			for i in {1..3}; 
+			for i in {1..5}; 
 			do
 				echo  "Login $i";
 				 ./trial-test-debug;
 				cat debug-trial.json;
 				echo "";
-				if [ ! $i -eq 3 ]
+				if [ ! $i -eq 5 ]
 				then
-					sleep 2;  
+					sleep 3;  
 				fi
 			done
 			
