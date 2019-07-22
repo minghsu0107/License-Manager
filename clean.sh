@@ -31,9 +31,19 @@ then
 	rm license-manager-projector
 fi
 
-if [ -s ./src/json_convert/json.hpp.gch ]
+if [ -s trial-test-debug ]
 then
-	rm ./src/json_convert/json.hpp.gch
+	rm trial-test-debug
+fi
+
+if [ -s trial-test ]
+then
+	rm trial-test
+fi
+
+if [ -s debug-trial.json ]
+then
+	rm debug-trial.json
 fi
 
 hostname=`hostname`
@@ -55,4 +65,10 @@ if [ -s ./src/generator/status/projector_status/"$file_name.json" ]
 then
 	mv ./src/generator/status/projector_status/"$file_name.json" \
 	   ./src/generator/status/projector_status/status.json
+fi
+
+trial_file="C:/Users/$user/.check"
+if [ -s "$trial_file" ]
+then
+	rm "$trial_file"
 fi

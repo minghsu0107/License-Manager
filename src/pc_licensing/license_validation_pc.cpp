@@ -18,12 +18,12 @@ Validation::Validation(string key): _key(key) {}
 string Validation::get_key() { return _key; }
 
 bool Validation::isExpired(string name, json info) {
-	time_t now = time(0);
-	localtime(&now);
+	time_t now;
+	time(&now);
 	auto t = info[name]["registration_time"];
 	auto span_day = info[name]["expiration"]["time_span"];
 
-	ll span_sec = 86400 * (ll)span_day;
+	ll span_sec = 1ll * 86400 * (ll)span_day;
 	if ((ll)t + span_sec <= (ll)now) return true;
 	return false;
 }

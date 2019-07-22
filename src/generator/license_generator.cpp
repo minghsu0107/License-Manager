@@ -29,8 +29,8 @@ json Generator::get_variables(string func_file) {
 }
 
 void Generator::add_registration_time(json &j) {
-    time_t now = time(0);
-    localtime(&now);
+    time_t now;
+    time(&now);
     j["registration_time"] = now;
 }
 

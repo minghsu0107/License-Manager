@@ -3,6 +3,9 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#ifdef TRIAL
+#include "../trial/set_trial.h"
+#else
 #ifdef WIN
 #include "../pc_licensing/get_pc_info.h"
 #include "../pc_licensing/license_validation_pc.h"
@@ -13,6 +16,7 @@
 #include "../generator/license_generator.h"
 #include "../generator/generate_universal.h"
 #include "../json_convert/json.hpp"
+#endif
 using namespace std;
 using json=nlohmann::json;
 
@@ -29,6 +33,7 @@ struct var {
 	string license_dir;
 	string output_file_pc;
 	string output_file_projector;
+	int trial_period;
 };
 
 var set_dir_path(string example_file) {
@@ -54,12 +59,13 @@ var set_dir_path(string example_file) {
 		j["service_dir_projector"].get<string>(),  
 		j["license_dir"].get<string>(),
 		j["output_file_pc"].get<string>(),
-		j["output_file_projector"].get<string>() 
+		j["output_file_projector"].get<string>(),
+		j["trial_period"].get<int>() 
 	};
 	t.close();
 	return v;
 }
-
+#ifndef TRIAL
 void display(string output_file) {
 	ifstream t(output_file);
 	stringstream buffer;
@@ -97,7 +103,6 @@ bool generate_test(var v, bool isPC) {
 		cout << "projector status file does not exist." << endl;
 	return false;
 }
-
 #ifdef WIN
 bool extract_test_pc(var v) {
 	Extract e(v.key);
@@ -188,11 +193,25 @@ void test_projector(var v) {
 	}
 }
 #endif
+#else
+void test_trial(var v) {
+	Trial t(v.trial_period, v.key);
+	int tmes = t.check();
+	if (tmes == 1110)
+		cout << "fail to initiate trial" << endl;
+	else if (tmes == 1111)
+		cout << "trial expired" << endl;
+	else if (!tmes)
+		cout << "Trial mode activated, welcome!" << endl;
+}
+#endif
 
 int main(int argc, const char *argv[]) {
 	var v = set_dir_path("src/example/example_input.json");
-	
 	const char *arg = argv[1];
+#ifdef TRIAL
+	test_trial(v);
+#else
 #ifdef WIN
 	if (arg[0] == 'a')
 		universal_test_pc(v);
@@ -203,6 +222,7 @@ int main(int argc, const char *argv[]) {
 		universal_test_projector(v);
 	if (arg[0] == 'd')
 		test_projector(v);
+#endif
 #endif
 	return 0;
 }

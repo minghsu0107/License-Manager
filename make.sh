@@ -1,20 +1,64 @@
 # !usr/bin/bash
 
 show_error_message() {
-	echo "Usage:"
+	echo "Usage"
+	echo "Test licensing system:"
 	echo "./make.sh [Host] [Mode] [Options]"
 	echo "Host"
 	echo "    -c          for pc (on windows git bash)"
 	echo "    -p          for projector (on linux)"
 	echo "Mode"
 	echo "    -u          using universal key"
-	echo "    -t          for general cases"
+	echo "    -g          for general cases"
+	echo "Options"
+	echo "    -d          debug mode"
+	echo ""
+	echo "Test trial mechanism:"
+	echo "./make.sh -t [Options]"
 	echo "Options"
 	echo "    -d          debug mode"
 }
 
 compile_and_run() {
-	if [ $# -eq 3 -a "$1" = "-d" ]
+	if [ "$1" = "-t" ]
+	then
+		if [ $# -eq 1 ]
+		then
+			if [ ! -s trial-test ]
+			then
+				g++ -std=gnu++11 -D TRIAL \
+				         src/example/example.cpp \
+				         src/json_convert/json.hpp \
+				         src/encryption/xxtea.cpp \
+				         src/trial/set_trial.cpp \
+				         -o trial-test
+			fi
+			./trial-test
+		elif [ $# -eq 2 -a "$2" = "-d" ]
+		then
+			if [ ! -s trial-test-debug ]
+			then
+				g++ -std=gnu++11 -D TRIAL -D DEBUG \
+				         src/example/example.cpp \
+				         src/json_convert/json.hpp \
+				         src/encryption/xxtea.cpp \
+				         src/trial/set_trial.cpp \
+				         -o trial-test-debug
+			fi
+			for i in {1..3}; 
+			do
+				echo  "Login $i";
+				 ./trial-test-debug;
+				cat debug-trial.json;
+				echo "";
+				if [ ! $i -eq 3 ]
+				then
+					sleep 2;  
+				fi
+			done
+			
+		fi
+	elif [ $# -eq 3 -a "$1" = "-d" ]
 	then
 		if [ "$2" = "-c" ]
 		then
@@ -120,14 +164,20 @@ process() {
 	
 }
 
-if [ $# -eq 2 -o $# -eq 3 ]
+if [ $# -eq 1 -a "$1" = "-t" ]
 then
-	if [ "$1" = "-c" ]
+	compile_and_run $1
+elif [ $# -eq 2 -o $# -eq 3 ]
+then
+	if [ $# -eq 2 -a "$1" = "-t" -a "$2" = "-d" ]
+	then
+		compile_and_run $1 $2
+	elif [ "$1" = "-c" ]
 	then
 		if [ "$2" = "-u" ]
 		then
 			process "$#" "a" "$1" "$3"
-		elif [ "$2" = "-t" ]
+		elif [ "$2" = "-g" ]
 		then
 			process "$#" "b" "$1" "$3"
 		else
@@ -138,7 +188,7 @@ then
 	    if [ "$2" = "-u" ]
 		then
 			process "$#" "c" "$1" "$3"
-		elif [ "$2" = "-t" ]
+		elif [ "$2" = "-g" ]
 		then
 			process "$#" "d" "$1" "$3"
 		else
