@@ -70,7 +70,6 @@ int ProExtract::load(string serial_number_file, string output_dir_projector) {
             return error_code;
     }
     string encryp = my_encryption(j);
-    //cout <<j;
     
     mkdir(output_dir_projector.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     string dir = output_dir_projector + "/email_info_projector";
