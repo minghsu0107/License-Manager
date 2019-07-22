@@ -31,8 +31,8 @@ Test licensing system:
 
 Test trial mechanism:
 ./make.sh -t [Options]
-       Options
-            -d          debug mode
+	Options
+	    -d          debug mode
 ```
 
 For example, the command below tests the general cases for pc licensing in debug mode.
