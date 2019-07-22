@@ -29,7 +29,7 @@ Test licensing system:
 	Options
 	    -d          debug mode
 
-Test trial mechanism:
+Test trial mechanism on pc (windows git bash):
 ./make.sh -t [Options]
 	Options
 	    -d          debug mode
