@@ -1,6 +1,6 @@
 # License Manager
 
-This license manager implements an authorization mechanism for a projector and its controller application. In order to activate the service, an user must enter a specific license for each device. In addition, the user is given a 30-day trial period for testing the application by default.
+This license manager implements an authorization mechanism for a projector and its controller application. In order to activate the service, the user must enter a specific license for each device. In addition, the user is given a 30-day trial period for testing the application by default.
 
 ## Usage ##
 
