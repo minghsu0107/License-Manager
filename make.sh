@@ -3,7 +3,7 @@
 show_error_message() {
 	echo "Usage"
 	echo "Test licensing system:"
-	echo "./make.sh [Host] [Mode] [Options]"
+	echo "./make.sh Host Mode [Options]"
 	echo "    Host"
 	echo "        -c          for pc (on windows git bash)"
 	echo "        -p          for projector (on linux)"
