@@ -68,3 +68,6 @@ To clean up outputs, run the following command:
     - if the license is valid, activate corresponding functions according to the service status mentioned in the license
 
 Note that this license_manager is designed to generate a single license from multiple requests (if any).
+
+## Workflow ##
+![](https://i.imgur.com/LxLx4cd.png)
