@@ -70,4 +70,4 @@ To clean up outputs, run the following command:
 Note that this license_manager is designed to generate a single license from multiple requests (if any).
 
 ## Workflow ##
-![](https://i.imgur.com/SrMnVF0.png)
+![](https://i.imgur.com/bfpbWO2.png)
