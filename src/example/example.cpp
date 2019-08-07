@@ -178,7 +178,7 @@ void validate_test_projector(var v) {
 	else if (vmes == 1004)
 		cout << "wrong license key." << endl;
 	else if (vmes == 1005)
-		cout << "invalid pc." << endl;
+		cout << "invalid projector." << endl;
 }
 void universal_test_projector(var v) {
 	Universal u(v.key, v.version);
