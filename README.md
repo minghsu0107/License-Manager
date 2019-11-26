@@ -4,10 +4,6 @@ This license manager implements an authorization mechanism for a projector and i
 
 ## Usage ##
 
-```shell=
-git clone https://github.com/minghsu0107/license_manager.git
-```
-
 Set permission:
 
 ```shell=
