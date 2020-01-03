@@ -28,7 +28,6 @@ compile_and_run() {
 			then
 				g++ -std=gnu++11 -D TRIAL \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/trial/set_trial.cpp \
 				         -o trial-test
@@ -40,7 +39,6 @@ compile_and_run() {
 			then
 				g++ -std=gnu++11 -D TRIAL -D DEBUG \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/trial/set_trial.cpp \
 				         -o trial-test-debug
@@ -67,7 +65,6 @@ compile_and_run() {
 				set_status_file_name
 				g++ -std=gnu++11 -D DEBUG -D WIN \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/pc_licensing/get_pc_info.cpp \
 				         src/generator/license_generator.cpp \
@@ -83,7 +80,6 @@ compile_and_run() {
 				set_status_file_name
 				g++ -std=gnu++11 -D DEBUG \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/projector_licensing/get_projector_info.cpp \
 				         src/generator/license_generator.cpp \
@@ -102,7 +98,6 @@ compile_and_run() {
 				set_status_file_name
 				g++ -std=gnu++11 -D WIN \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/pc_licensing/get_pc_info.cpp \
 				         src/generator/license_generator.cpp \
@@ -118,7 +113,6 @@ compile_and_run() {
 				set_status_file_name
 				g++ -std=gnu++11 \
 				         src/example/example.cpp \
-				         src/json_convert/json.hpp \
 				         src/encryption/xxtea.cpp \
 				         src/projector_licensing/get_projector_info.cpp \
 				         src/generator/license_generator.cpp \
